@@ -1,14 +1,24 @@
-data = list(map(lambda x: [int(y) for y in x], [x.splitlines() for x in open('day1/input.txt').read().split('\n\n')]))
+PUZZLE_INPUT_FILEPATH = 'day1/input.txt'
 
-elves = []
-for x in data:
-    elves.append({
-        'backpack': x,
-        'total_calories': sum(x)
-    })
-    
-elves.sort(key=lambda x: x['total_calories'], reverse=True)
 
-top3sum = sum(x['total_calories'] for x in elves[0:3])
+class Elf:
+    def __init__(self, backpack: list[int]) -> None:
+        """An Elf, with a little backpack full of snacks.
 
-print(top3sum)
+        Args:
+            backpack (list[int]): The calories contained in the elf's snackpack.
+        """
+        self.backpack = backpack
+
+
+if __name__ == "__main__":
+    # Read puzzle input, perform cursed one-liner.
+    data = sorted([Elf(z) for z in map(lambda x: [int(y) for y in x], [x.splitlines() for x in open(PUZZLE_INPUT_FILEPATH).read().split('\n\n')])], key=lambda x: sum(x.backpack), reverse=True)
+
+    # Answer for part 1
+    print('Part 1:', sum(data[0].backpack))
+
+    # Answer for part 2
+    print('Part 2:', sum(sum(x.backpack) for x in data[:3]))
+
+    # TODO: Contemplate sins.
