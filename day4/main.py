@@ -1,10 +1,6 @@
 PUZZLE_INPUT_FILEPATH = 'day4/input.txt'
 
 
-def contains(low, num, high):
-    "Returns true if one range is entirely within the other."
-    return low <= num <= high
-
 if __name__ == "__main__":
     score1, score2 = 0, 0
     for line in open(PUZZLE_INPUT_FILEPATH):
